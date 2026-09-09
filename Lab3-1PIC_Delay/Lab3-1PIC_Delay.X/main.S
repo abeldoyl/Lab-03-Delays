@@ -1,7 +1,7 @@
     ; Abel Doyle
     ; RCET3373
-    ; Lab2-1PIC
-    ; https://github.com/abeldoyl/Lab-02-PIC-I-O/tree/main/Lab2-1PIC/Lab2-1PIC.X
+    ; Lab3-1PIC_Delay
+    ; https://github.com/abeldoyl/Lab-03-Delays/tree/main/Lab3-1PIC_Delay/Lab3-1PIC_Delay.X
     
 ; PIC16F883 Configuration Bit Settings
 
@@ -37,11 +37,35 @@ PSECT code,class=CODE,delta=2
  
 Setup:
     ; add device setup here
+    ; Bank 0 Setup for PORTB
+    BCF 0x03,6
+    BCF 0x03,5
+    CLRF 0x06 ; Setting PORTB low on Reset
+    
+    ; Bank 1 Setup for PORT B
+    BCF 0x03,6
+    BSF 0x03,5
+    CLRF 0x86 ; Setting TRISB low on Reset so that it's an output
+    
+    ; Bank 2 Setup for PORTB
+    BSF 0x03,6
+    BCF 0x03,5
+    BSF 0x09,1 ; Setting Bit 1 high for CM2CON1
+    
+    ; Bank 3 Setup for PORTB
+    BSF 0x03,6
+    BSF 0x03,5
+    CLRF 0x89 ; Setting ANSELH I/O to Digital
+    
+    BCF 0x03,6
+    BCF 0x03,5
     goto Main
     
     
 Main:
     ; main code goes here
+    INCF 0x06,1 ; Increments the output of PORTB
+    NOP
     goto Main
 End
     
