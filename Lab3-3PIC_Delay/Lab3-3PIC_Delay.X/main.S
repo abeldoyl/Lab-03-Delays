@@ -71,6 +71,7 @@ Main:
 
     MOVLW 0X04      ;1 TCY
     MOVWF outCount  ;1 TCY
+    NOP
     goto OutDelay   ;2 TCY
 
 OutDelay:
