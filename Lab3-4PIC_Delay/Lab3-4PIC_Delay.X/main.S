@@ -73,11 +73,11 @@ Main:
     CALL outDelay ;2TCY
     goto Main ;2TCY
 
-    outDelay:
+outDelay:
     MOVLW 0x04 ;1 TCY
     MOVWF outCount ;1 TCY
 
-    outLoop:
+outLoop:
     CALL midDelay ;2 TCY
     DECFSZ outCount; 1 (2) TCY
     goto outLoop ;2 TCY
@@ -86,11 +86,11 @@ Main:
     NOP
     RETURN ;2 TCY
 
-    midDelay:
+midDelay:
     MOVLW 0xB7 ;1 TCY
     MOVWF midCount ;1 TCY
 
-    midLoop:
+midLoop:
     CALL inDelay ;2 TCY
     DECFSZ midCount ;1 (2) TCY
     goto midLoop ;2 TCY
@@ -101,11 +101,11 @@ Main:
     NOP
     RETURN ;2 TCY
 
-    inDelay:
+inDelay:
     MOVLW 0xE1 ;1 TCY
     MOVWF inCount ;1 TCY
 
-    inLoop:
+inLoop:
     DECFSZ inCount ;1 (2) TCY
     goto inLoop ;2 TCY
     RETURN ;2 TCY
